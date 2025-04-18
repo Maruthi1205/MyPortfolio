@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-text-primary: 6, 32, 43;
+    --color-text-secondary: 7, 122, 125;
+    --color-text-tertiary: 122, 226, 207;
+    --color-text-muted: 245, 238, 221;
+    --color-link: 7, 122, 125;
+    --color-link-hover: 122, 226, 207;
+    --color-heading: 6, 32, 43;
+    --color-accent: 7, 122, 125;
+    --color-background-dark: 15, 23, 42; /* Define dark background color */
+  }
+
+  .dark {
+    --color-text-primary: 245, 238, 221;
+    --color-text-secondary: 122, 226, 207;
+    --color-text-tertiary: 7, 122, 125;
+    --color-text-muted: 6, 32, 43;
+    --color-link: 122, 226, 207;
+    --color-link-hover: 245, 238, 221;
+    --color-heading: 245, 238, 221;
+    --color-accent: 122, 226, 207;
+    --bg-background-dark-rgb: var(--color-background-dark); /* Define RGB for Tailwind */
+  }
+
+  body {
+    @apply bg-primary dark:bg-[rgb(var(--bg-background-dark-rgb))] transition-colors duration-300;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold transition-colors duration-300;
+  }
+
+  a {
+    @apply transition-colors duration-300;
+  }
+
+  p {
+    @apply transition-colors duration-300;
+  }
+}
+
+@layer components {
+  .nav-link {
+    @apply relative px-4 py-2 text-text-secondary hover:text-accent transition-colors duration-300;
+  }
+
+  .nav-link::after {
+    content: '';
+    @apply absolute left-0 bottom-0 w-0 h-0.5 bg-accent transition-all duration-300;
+  }
+
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+
+  .glow-on-hover {
+    @apply relative overflow-hidden transition-all duration-300;
+  }
+
+  .glow-on-hover::before {
+    content: '';
+    @apply absolute inset-0 bg-accent opacity-0 transition-opacity duration-300;
+  }
+
+  .glow-on-hover:hover::before {
+    @apply opacity-20;
+  }
+
+  .card {
+    @apply bg-secondary/10 rounded-lg p-6 transition-all duration-300 hover:scale-105 border border-transparent hover:border-accent hover:shadow-[0_0_15px_rgba(7,122,125,0.3)];
+  }
+
+  .section-title {
+    @apply text-4xl font-bold mb-8 relative inline-block text-text-heading;
+  }
+
+  .section-title::after {
+    content: '';
+    @apply absolute left-0 -bottom-2 w-1/2 h-1 bg-accent;
+  }
+}
